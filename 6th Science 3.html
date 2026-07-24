@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>పదార్థాలను వేరు చేయుట - Separation of Substances (పూర్తి పాఠం)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mandali&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #475569;
+            --primary-color: #0284c7;
+            --secondary-color: #0d9488;
+            --accent-color: #d97706;
+            --border-color: #cbd5e1;
+            --header-bg: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+            --header-text: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --text-muted: #cbd5e1;
+            --primary-color: #38bdf8;
+            --secondary-color: #2dd4bf;
+            --accent-color: #fbbf24;
+            --border-color: #334155;
+            --header-bg: linear-gradient(135deg, #0369a1 0%, #0f766e 100%);
+            --header-text: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Mandali', 'Nirmala UI', 'Gautami', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.9;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: var(--header-bg);
+            color: var(--header-text);
+            padding: 10px 5px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .card:hover {
+            box-shadow: var(--card-hover);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.9rem;
+            margin-bottom: 5px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 2px;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin: 22px 0 10px 0;
+        }
+
+        p, li {
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+            color: var(--text-color);
+        }
+
+        strong, b {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .activity-box {
+            background: rgba(2, 132, 199, 0.06);
+            border-left: 6px solid var(--primary-color);
+            padding: 22px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .activity-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .keyword-box {
+            background: rgba(217, 119, 6, 0.08);
+            border: 1px dashed var(--accent-color);
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .keyword-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            font-size: 1.15rem;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* Image Upload & Display Styles */
+        .img-container {
+            text-align: center;
+            margin: 20px 0;
+            background: var(--bg-color);
+            border: 2px dashed var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .img-container {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        /* Image screen లో proper ga kanipinchenduku CSS */
+        .img-container img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            display: block;
+            border-radius: 5px;
+        }
+        .img-container p {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #555;
+            text-align: left;
+        }
+
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-upload {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background-color: transparent;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-upload:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="లైట్/డార్క్ మోడ్ మార్చండి">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+            <h1>పదార్థాలను వేరు చేయుట</h1>
+            <p>ఆరవ తరగతి సామాన్య శాస్త్రం</p>
+        </header>
+
+        <div class="card">
+            <p>మన దైనందిన జీవితంలో, చాలా సందర్భాలలో <strong>మిశ్రమాల నుండి కొన్ని పదార్థాలను వేరు చేయడాన్ని</strong> మనం గమనిస్తూనే ఉంటాం. ఉదాహరణకు, <strong>టీ తయారు చేసే సందర్భంలో సిబ్బి గరిటె (జాలీ) సహాయంతో తేనీటి మిశ్రమం నుండి తేయాకులను వేరు చేస్తాం</strong>.</p>
+            
+            <div class="img-container">
+    <img id="preview-3.1" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.1.jpg?raw=true" alt="పటం 3.1">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.1:</strong> సిబ్బి గరిటెతో (జాలీ) తేయాకులను వేరు చేయుట</p>
+</div>
+
+            <p><strong>పంట కోత సమయంలో ధాన్యంను, దుబ్బు (పన)ల నుండి వేరు చేస్తాం</strong>. <strong>పాలు లేదా పెరుగును చిలకడం ద్వారా దాని నుండి వెన్నను వేరు చేస్తాం</strong>.</p>
+            
+         
+			<div class="img-container">
+    <img id="preview-3.2" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.2.png?raw=true" alt="పటం 3.2">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.2:</strong> పాలు లేదా పెరుగుని చిలికి వెన్నను బయటకు తీయుట</p>
+</div>
+			
+			
+
+            <p><strong>పత్తి దారాల నుండి గింజలను వేరు చేయడానికి జిన్నింగ్ (గింజలు తొలగించుట) ప్రక్రియను</strong> ఉపయోగిస్తాం. బహుశా మీరు గోధుమరవ్వ ఉప్మా లేదా అటుకుల ఉప్మా తినే ఉంటారు. మీరు దానిలో పచ్చి మిరపకాయలను చూస్తే, తినడానికి ముందుగా మీరు వాటిని జాగ్రత్తగా వేరు చేసి పక్కన పెట్టిఉంటారు.</p>
+            <p>మీకు ఒక బుట్ట నిండా <strong>మామిడికాయలు, జామ కాయలు</strong> కలిపి ఇచ్చి వాటిని వేరు చేయమన్నారనుకోండి ఏం చేస్తారు? ఒకే రకమైన వాటిని తీసి వేరే పాత్రలో ఉంచుతారు. అంతే కదా?</p>
+            <p>ఇది చూడడానికి తేలికగానే ఉంటుంది. అయితే ఒకవేళ మనం వేరు చేయాలనుకుంటున్న పదార్థాలు మామిడికాయలు జామకాయల కన్నా చాలా చిన్న పరిమాణంలో ఉంటే అప్పుడు పరిస్థితి ఏమిటి? మీకు ఒక గ్లాసులో <strong>ఇసుక, ఉప్పు మిశ్రమాన్ని</strong> ఇచ్చారని ఊహించండి. ఈ మిశ్రమం నుండి ఇసుక రేణువులను చేతితో ఏరడం ద్వారా ఉప్పును వేరు చేయడం అసాధ్యం. దానిని మనం కనీసం ఆలోచించలేం కూడా.</p>
+            <p>కానీ, అసలు మనం ఎందుకు పదార్థాలను వేరు చేయవలసిన అవసరం ఉంటుంది అనే విషయాన్ని <strong>పహేలి</strong> తెలుసుకోవాలనుకుంటుంది.</p>
+        </div>
+
+        <div class="card">
+            <div class="activity-box">
+                <h3>కృత్యం 1</h3>
+                <p>పట్టిక 3.1 లో మొదటి నిలువు వరుస నందు, కొన్ని వేరు చేసే పద్ధతులు ఇవ్వబడ్డాయి. వేరు చేయడానికి గల కారణం, వేరు చేసిన అంశాలను వాడుకునే పద్ధతి వరుసగా 2, 3 నిలువు వరుసలలో ఇవ్వబడ్డాయి. ఏదేమైనా 2, 3 వరుసలలో ఇవ్వబడిన సమాచారము కలగలసిపోయి ఉన్నది. దీనిని సరిగ్గా జతపరచండి.</p>
+            </div>
+
+            <h3 style="text-align: center; margin-bottom: 15px;">పట్టిక 3.1: మనం పదార్థాలను ఎందుకు వేరు చేస్తాం?</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>వేరు చేయు పద్ధతి</th>
+                        <th>వేరు చేయుటకు గల కారణము</th>
+                        <th>వేరు చేసిన అంశాలను మనం ఏమి చేస్తాం?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1) బియ్యం నుండి రాళ్ళను వేరుచేయుట</strong></td>
+                        <td>a) ఉపయోగపడే రెండు విభిన్న అంశాలను వేరుచేయుటకు</td>
+                        <td>i) రాళ్ళను పారవేస్తాం</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2) వెన్న కొరకు పాలను చిలుకుట</strong></td>
+                        <td>b) ఉపయోగ పడని అంశాలను తొలగించుటకు</td>
+                        <td>ii) మలినాలను పారవేస్తాం</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3) తేయాకులను వేరుచేయుట</strong></td>
+                        <td>c) మలినాలు లేదా హానికరమైన అంశాలను తొలగించుటకు</td>
+                        <td>iii) మనం రెండు అంశాలనూ ఉపయోగిస్తాం</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>మనం ఏదైనా ఒక పదార్థాన్ని ఉపయోగించే ముందు, దానిలో కలిసి ఉన్న <strong>హానికరమైన లేదా పనికిరాని పదార్థాలను</strong> వేరు చేయవలసిన అవసరం ఉందని మనం గమనిస్తాం. కొన్ని సార్లు, <strong>ఉపయోగకరమైన పదార్థాలను</strong> విడిగా వాడుకోవాలంటే కూడా మనం వాటిని వేరు చేస్తాం.</p>
+            <p>వేరు చేయవలసిన పదార్థాలు వివిధ పరిమాణాలలో ఉన్న చిన్న భాగాలు లేదా వస్తువులు కావచ్చు. ఇవి పదార్థం యొక్క ఏదైనా మూడు స్థితులలో ఉండవచ్చు, అనగా <strong>ఘన, ద్రవ లేదా వాయువు</strong>. కాబట్టి, కలిసిపోయిన పదార్థాలు భిన్న లక్షణాలను కలిగి ఉంటే వాటిని మనం ఎలా వేరు చేస్తాం?</p>
+        </div>
+
+        <div class="card">
+            <h2>3.1 వేరు చేసే పద్ధతులు</h2>
+            <p>ఒకదానితో ఒకటి కలిసిన పదార్థాలను వేరు చేయడానికి కొన్ని సాధారణ (సరళ) పద్ధతులను మనం చర్చిద్దాం. రోజువారీ కార్యకలాపాలలో ఉపయోగించే కొన్ని పద్ధతులను మీరు ఇక్కడ గమనించవచ్చు.</p>
+
+            <h3 style="color: var(--primary-color);">చేతితో ఏరివేయుట (Handpicking)</h3>
+            <div class="activity-box">
+                <h3>కృత్యం 2</h3>
+                <p>ఒక దుకాణం నుండి కొనుగోలు చేసిన ఆహార ధాన్యం ప్యాకెట్ను తరగతి గదికి తీసుకురండి. ఇప్పుడు, ఒక కాగితంపై ఈ గింజలను పరచండి. మీకు కాగితంపై ఒకే రకమైన గింజలు మాత్రమే కనిపిస్తున్నాయా? అందులో రాతి ముక్కలు, పొట్టు, విరిగిన ధాన్యం, మరేదైనా ధాన్యపు గింజలు ఉన్నాయా? ఇప్పుడు, దాని నుండి రాతి ముక్కలు, పొట్టు, ఇతర గింజలను మీ చేతితో తొలగించండి.</p>
+            </div>
+            <p>గోధుమలు, బియ్యం లేదా పప్పుల నుండి <strong>ధూళి, రాయి, పొట్టు</strong> వంటి కొంచెం పెద్ద పరిమాణంలో ఉన్న మలినాలను వేరు చేయడానికి <strong>"చేతితో ఏరివేయుట"</strong> అనే పద్ధతిని ఉపయోగించవచ్చు. సాధారణంగా మలినాల మోతాదు ఎక్కువ ఉండదు. ఇటువంటి పరిస్థితులలో, పదార్థాలను వేరు చేయడానికి చేతితో ఏరివేయుట అనుకూలమైన పద్ధతి అని మనం తెలుసుకుంటాం.</p>
+            
+            <div class="img-container">
+    <img id="preview-3.2" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.3.png?raw=true" alt="పటం 3.3">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.3:</strong> గింజల నుండి రాళ్ళను చేతితో ఏరివేయుట</p>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-top: 30px;">నూర్పిడి (Threshing)</h3>
+            <p>పంట కోత తరువాత పొలాల్లో పడి ఉన్న <strong>గోధుమలు లేదా వరి దుబ్బులను</strong> మీరు తప్పక చూసి ఉంటారు. ధాన్యాన్ని వేరు చేయడానికి ముందు దుబ్బులను <strong>ఎండలో ఆరబెట్టాలి</strong>. ప్రతి దుబ్బుకు అనేక ధాన్యపు గింజలు అతుక్కుని ఉంటాయి. పొలంలో ఉన్న వందలాది వరిదుబ్బులలో ఉన్న ధాన్యం గింజల సంఖ్యను ఊహించుకోండి! రైతు ఆ వరిపన నుండి ధాన్యపు గింజలను ఎలా వేరు చేస్తాడు?</p>
+            <p>చెట్ల నుండి మామిడి పండ్లను లేదా జామ పండ్లను మనం కోయవచ్చు. కానీ, ధాన్యం గింజలు మామిడి లేదా జామపండ్ల కంటే చాలా చిన్నవి. కాబట్టి, ఆ వరి దుబ్బుల నుండి వాటిని కోయడం అసాధ్యం. ధాన్యం గింజలను వాటి దుబ్బుల నుండి ఎలా వేరు చేస్తారు?</p>
+            <p>దుబ్బలు మొదలైన వాటి నుండి ధాన్యాన్ని వేరు చేయడానికి ఉపయోగించే పద్ధతి <strong>"నూర్పిడి" (Threshing)</strong>. ఈ పద్ధతిలో, ధాన్యపు గింజలను వేరు చేయడానికి వాటి దుబ్బులను <strong>నేలకు కొడతారు</strong>. కొన్నిసార్లు, <strong>ఎద్దుల సహాయంతో</strong> నూర్పిడి చేస్తారు. పెద్ద మొత్తంలో ధాన్యాన్ని నూర్పిడి చేయడానికి <strong>యంత్రాలను (Threshers)</strong> కూడా ఉపయోగిస్తారు.</p>
+
+            <div class="img-container">
+    <img id="preview-3.2" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.4.png?raw=true" alt="పటం 3.4">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.4:</strong> నూర్పిడి ప్రక్రియ</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="color: var(--primary-color);">తూర్పారబట్టడం (Winnowing)</h3>
+            <div class="activity-box">
+                <h3>కృత్యం 3</h3>
+                <p>రంపపు పొట్టు లేదా ఎండుటాకుల పొడితో పొడి ఇసుక మిశ్రమాన్ని తయారు చేయండి. ఈ మిశ్రమాన్ని ఒక న్యూస్ పేపర్ మీద గాని లేక ఒక పళ్ళెంలో గాని ఉంచండి. ఈ మిశ్రమాన్ని జాగ్రత్తగా పరిశీలించండి. దీనిలోని రెండు వేరువేరు అంశాలను తేలికగా విడగొట్టగలమా? రెండు అంశాల యొక్క పరిమాణాలు ఒకే రకంగా ఉన్నాయా? చేతితో ఏరి వేయడం ద్వారా ఈ అంశాలను వేరు చేయడం సాధ్యమవుతుందా?</p>
+                <p>ఇప్పుడు, ఈ మిశ్రవాన్ని ఖాళీ మైదానానికి తీసుకెళ్లి, ఎత్తుగా ఉన్న ప్రదేశం పై నిలబడండి. ఈ మిశ్రవాన్ని ఒక పళ్ళెంలో లేదా కాగితం పైన ఉంచండి. మిశ్రమం ఉన్న పళ్ళెం లేదా కాగితాన్ని మీ భుజం ఎత్తులో పట్టుకోండి. మిశ్రమం నెమ్మదిగా జారే విధంగా కొద్దిగా వంచి పట్టుకోండి.</p>
+            </div>
+            <p>ఏం జరుగుతుంది? ఇసుక, రంపపు పొట్టు రెండూ ఒకే చోట పడతాయా? మిశ్రమంలో గాలికి ఎగిరిపోయే అంశం ఏదైనా ఉందా? రెండు అంశాలను గాలి వేరు చేయగలిగిందా?</p>
+            <p>మిశ్రమం లోని వేర్వేరు అంశాలను వేరు చేసే ఈ పద్ధతిని <strong>“తూర్పారబట్టడం” (Winnowing)</strong> అంటారు. <strong>గాలి ద్వారా లేదా గాలిని ఊదడం ద్వారా</strong> మిశ్రమంలోని బరువైన మరియు తేలికైన అంశాలను వేరు చేయడానికి తూర్పారబట్టడం ఉపయోగించబడుతుంది.</p>
+
+           <div class="img-container">
+    <img id="preview-3.2" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.5.png?raw=true" alt="పటం 3.5">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.5:</strong> తూర్పారబట్టడం (ఎగరబోయుట)</p>
+            </div>
+
+            <p>ఈ పద్ధతిని రైతులు సాధారణంగా <strong>బరువైన ధాన్యపు గింజల నుండి తేలికైన పొట్టును</strong> వేరు చేయడానికి ఉపయోగిస్తారు. గాలి వలన పొట్టు దూరంగా నెట్టివేయబడుతుంది. ధాన్యపు గింజలు వేరు చేయబడి, కింద కుప్పగా ఏర్పడతాయి. వేరుచేసిన పొట్టును <strong>పశువులకు మేతగా</strong> ఉపయోగిస్తారు.</p>
+        </div>
+
+        <div class="card">
+            <h3 style="color: var(--primary-color);">జల్లెడ పట్టడం (Sieving)</h3>
+            <p>కొన్నిసార్లు, మనం పిండితో వంటకం సిద్ధం చేయాలనుకోవచ్చు. అందులో ఉండే <strong>మలినాలు, ఊకను</strong> మనం తొలగించాలి. అప్పుడు మనం ఏం చేస్తాం? మనం ఒక <strong>జల్లెడను</strong> తీసుకొని దానిలో పిండిని పోస్తాం.</p>
+            <p>జల్లెడ పట్టినపుడు లావైన మలినాలు జల్లెడ మీద ఉండిపోయి, సన్నని పిండి రేణువులు జల్లెడ రంధ్రాల గుండా క్రిందికి పడతాయి. <strong>పిండి మిల్లులో</strong>, గోధుమలను పిండిగా మార్చడానికి ముందు వాటిలోని పొట్టు, రాళ్ళు వంటి మలినాలను తొలగిస్తారు.</p>
+
+            <div class="img-container">
+    <img id="preview-3.2" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.6.png?raw=true" alt="పటం 3.6,3.7">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.6 & 3.7:</strong> జల్లెడ పట్టడం (పిండి మరియు ఇసుక)</p>
+            </div>
+
+            <div class="activity-box">
+                <h3>కృత్యం 4</h3>
+                <p>ఇంటి నుండి ఒక జల్లెడ, కొద్ది మోతాదులో పిండిని తరగతికి తీసుకురండి. పిండిలో ఏవైనా మలినాలు ఉంటే వాటిని వేరు చేయడానికి పిండిని జల్లెడ పట్టండి. ఇప్పుడు, సుద్ద ముక్కలను మెత్తగా పొడి చేసి, పిండిలో కలపండి. జల్లెడ పట్టడం ద్వారా పిండిని, సుద్దపొడిని వేరు చేయగలమా?</p>
+            </div>
+            <p>మిశ్రమం యొక్క అంశాలు <strong>వేర్వేరు పరిమాణాలను</strong> కలిగి ఉన్నప్పుడే జల్లెడ పట్టడం ఉపయోగించబడుతుంది. <strong>నిర్మాణ స్థలాలలో (Construction sites)</strong> ఇసుక నుండి చిన్నచిన్న గులకరాళ్ళు, రాళ్ళను వేరు చేయడానికి ఇలాంటి జల్లెడలు ఉపయోగించడాన్ని మీరు గమనించి ఉండవచ్చు.</p>
+        </div>
+
+        <div class="card">
+            <h3 style="color: var(--primary-color);">అవక్షేపణం, తేర్చడం మరియు వడపోత (Sedimentation, Decantation & Filtration)</h3>
+            <p>కొన్నిసార్లు, తూర్పార పట్టడం, చేతితో ఏరి వేయడం ద్వారా మిశ్రమంలోని అంశాలను వేరు చేయడం సాధ్యం కాకపోవచ్చు. ఉదాహరణకు, బియ్యం లేదా పప్పులో, <strong>దుమ్ము, ధూళి, మట్టి రేణువుల</strong> వంటి తేలికపాటి మలినాలు ఉండవచ్చు. వండడానికి ముందు బియ్యం లేదా పప్పుల నుండి అటువంటి మలినాలను ఎలా వేరు చేస్తారు?</p>
+            <p>నీరు కలిపినప్పుడు మిశ్రమంలోని <strong>బరువైన అంశము నీటి అడుగు భాగాన చేరుతుంది</strong>. ఈ ప్రక్రియను <strong>అవక్షేపణం (Sedimentation)</strong> అంటారు. నీరు (దుమ్ముతో పాటు) తొలగించబడినప్పుడు, ఈ ప్రక్రియను <strong>తేర్చడం (Decantation)</strong> అంటారు.</p>
+
+            <div class="img-container">
+    <img id="preview-3.2" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.8.png?raw=true" alt="పటం 3.8">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);">పటం 3.8:</strong> అవక్షేపణం మరియు తేర్చడం</p>
+            </div>
+
+            <div class="activity-box">
+                <h3>కృత్యం 5</h3>
+                <p>ఒక చెరువు లేదా నది నుండి కొంత బురద నీటిని సేకరించండి. అది అందుబాటులో లేకుంటే, ఒక గ్లాసు నీటిలో కొంత మట్టిని కలపండి. దీనిని అరగంట పాటు కదపకుండా ఉంచండి. నీటిని జాగ్రత్తగా గమనించండి, మీ పరిశీలనలను నమోదు చేయండి. మట్టి నీటి అడుగున చేరుతుంది!</p>
+            </div>
+
+            <p>ఇప్పుడు వడపోత గురించి చూద్దాం. తేనీటిని సిద్ధం చేసిన తర్వాత, తేయాకులను తొలగించడానికి <strong>సిబ్బి గరిటెను లేదా గుడ్డను</strong> వడపోత సాధనంగా ఉపయోగిస్తాం. <strong>వడపోత కాగితము (Filter Paper)</strong> అతి సన్నని రంధ్రాలు కలిగిన అద్భుతమైన వడపోత సాధనం.</p>
+
+            <div class="img-container">
+    <img id="preview-3.2" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.9,10.png?raw=true" alt="పటం 3.9,10">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.9 & 3.10:</strong> వడపోత కాగితాన్ని మడిచి శంఖువుగా మార్చి వడపోయుట</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="color: var(--primary-color);">భాష్పీభవనము (Evaporation)</h3>
+            <div class="activity-box">
+                <h3>కృత్యం 6</h3>
+                <p>ఒక బీకరులో నీటికి రెండు చెంచాల ఉప్పును కలిపి బాగుగా కలియబెట్టండి. ఉప్పునీటిని కలిగి ఉన్న ఈ బీకరును వేడి చేయండి. నీటిని పూర్తిగా మరగనిద్దాం. బీకరులో ఇప్పుడు ఏమి మిగిలింది?</p>
+            </div>
+            <p>ఈ కృత్యంలో ఉప్పు, నీరు మిశ్రమాన్ని వేరు చేయడానికి మనం <strong>భాష్పీభవనం (Evaporation)</strong> అనే ప్రక్రియను ఉపయోగించాం. <strong>నీటిని దాని ఆవిరిగా మార్చే ప్రక్రియను భాష్పీభవనం</strong> అంటారు.</p>
+
+            <div class="img-container">
+    <img id="preview-3.11,12" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.11.png?raw=true" alt="పటం 3.11,12">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.11 & 3.12:</strong> ఉప్పునీటిని వేడి చేయడం మరియు సముద్రపు నీటి నుండి ఉప్పును పొందుట</p>
+            </div>
+
+            <p>సముద్రపు నీటిలో చాలా <strong>లవణాలు కరిగి ఉంటాయి</strong>. సముద్రపు నీటిని <strong>లోతులేని గుంటలలో</strong> నిలిపి ఉంచినప్పుడు, సూర్యరశ్మి ద్వారా వేడెక్కి, భాష్పీభవనం చెంది ఉప్పు మిగులుతుంది.</p>
+        </div>
+
+        <div class="card">
+            <h2>వేరు చేయడానికి ఒకటి కంటే ఎక్కువ పద్ధతులను ఉపయోగించడం</h2>
+            <p>మిశ్రమాల నుండి పదార్థాలను వేరు చేయడానికి తరచుగా ఒక పద్ధతి సరిపోదు. <strong>ఒకటి కంటే ఎక్కువ పద్ధతులను</strong> ఉపయోగించవలసి ఉంటుంది.</p>
+            
+            <div class="activity-box">
+                <h3>కృత్యం 7 (ఇసుక, ఉప్పు మరియు నీటిని వేరు చేయుట)</h3>
+                <p>ఇసుక, ఉప్పు మిశ్రమాన్ని బీకర్ లో ఉండి నీరు కలపండి. ఇసుక అడుగున చేరుతుంది (<strong>అవక్షేపణం & తేర్చడం/వడపోత</strong>). ఆపై తేర్చిన ద్రవాన్ని కెటిల్లో పోసి వేడి చేయాలి. <strong>భాష్పీభవనం మరియు సాంద్రీకరణం (Condensation)</strong> ద్వారా ఉప్పును, నీటిని వేరు చేయవచ్చు.</p>
+            </div>
+
+            <div class="img-container">
+    <img id="preview-3.13" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.13.png?raw=true" alt="పటం 3.13">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.13:</strong> భాష్పీభవనం మరియు సాంద్రీకరణం</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>నీరు ఒక పదార్థాన్ని ఎంత పరిమాణ లైనా కరిగించుకోగలదా? (సంతృప్త ద్రావణం)</h2>
+            
+            <div class="activity-box">
+                <h3>కృత్యం 8 & 9</h3>
+                <p>అరకప్పు నీటిలో ఒక టీస్పూన్ ఉప్పు వేసి కరిగించండి. అలా ఉప్పును చెంచా చొప్పున కలుపుతూ పోతే, ఒక దశలో ఉప్పు కరగకుండా అలాగే బీకర్ దిగువన చేరుతుంది. దీనిని <strong>సంతృప్త ద్రావణం (Saturated Solution)</strong> అంటారు.</p>
+                <p><strong>వేడి చేస్తే నీటిలో ఎక్కువ మోతాదులో ఉప్పు కరుగుతుందని</strong> కృత్యం 9 నిరూపిస్తుంది.</p>
+            </div>
+
+            <div class="img-container">
+    <img id="preview-3.14" src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.3.14.png?raw=true" alt="పటం 3.14">
+    
+    <p style="margin-top: 10px; font-size: 1rem; color: var(--text-muted);"><strong>పటం 3.14:</strong> నీటిలో ఉప్పును కరిగించుట</p>
+            </div>
+
+            <h3 style="text-align: center; margin-top: 20px; margin-bottom: 15px;">పట్టిక 3.2: వేర్వేరు పదార్థాల కరిగే గుణం</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>పదార్థము</th>
+                        <th>నీటిలో కరిగిన పదార్థం యొక్క చెంచాల సంఖ్య</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ఉప్పు (Salt)</strong></td>
+                        <td>(నిర్దిష్ట పరిమాణం నమోదు చేయబడును)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>చక్కెర (Sugar)</strong></td>
+                        <td>(నిర్దిష్ట పరిమాణం నమోదు చేయబడును)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card keyword-box">
+            <h3 style="color: var(--accent-color); margin-top: 0;"><i class="fas fa-key"></i> కీలక పదాలు (Key Words)</h3>
+            <div class="keyword-tags">
+                <span class="tag">చిలుకుట (Churning)</span>
+                <span class="tag">సాంద్రీకరణము (Condensation)</span>
+                <span class="tag">తేర్చుట (Decantation)</span>
+                <span class="tag">భాష్పీభవనము (Evaporation)</span>
+                <span class="tag">వడపోత (Filtration)</span>
+                <span class="tag">చేతితో ఏరివేయుట (Handpicking)</span>
+                <span class="tag">సంతృప్త ద్రావణము (Saturated Solution)</span>
+                <span class="tag">అవక్షేపణం (Sedimentation)</span>
+                <span class="tag">జల్లెడ పట్టుట (Sieving)</span>
+                <span class="tag">ద్రావణము (Solution)</span>
+                <span class="tag">నూర్పిడి (Threshing)</span>
+                <span class="tag">తూర్పారబట్టడం (Winnowing)</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>మనం ఏమి నేర్చుకున్నాము? (సారాంశం - Summary)</h2>
+            <ul>
+                <li><strong>చేతితో ఏరి వేయుట, తూర్పారబట్టడం, జల్లెడ పట్టడం, అవక్షేపణము, తేర్చడము, వడపోత మరియు భాష్పీభవనం</strong> అనేవి మిశ్రమాల నుంచి పదార్థాలను వేరు చేయడానికి ఉపయోగించే కొన్ని ముఖ్యమైన పద్ధతులు.</li>
+                <li>పొట్టు, రాళ్లను <strong>చేతితో ఏరివేయుట</strong> ద్వారా ధాన్యం నుండి వేరు చేయవచ్చు.</li>
+                <li>బరువైన ధాన్యపు గింజల నుంచి పొట్టును <strong>తూర్పారబట్టడం</strong> ద్వారా వేరు చేయవచ్చు.</li>
+                <li>ఒక మిశ్రమంలో వేరువేరు పరిమాణాలలో ఉన్న రేణువులను వేరు చేయడానికి <strong>జల్లెడ పట్టడం మరియు వడపోత</strong> పద్ధతులను ఉపయోగించవచ్చు.</li>
+                <li>ఇసుక, నీటి మిశ్రమంలో బరువైన ఇసుక కణాలు నీటి అడుగు భాగంలోకి చేరినప్పుడు, <strong>తేర్చుట</strong> అనే ప్రక్రియను ఉపయోగించి నీటిని వేరు చేయవచ్చు.</li>
+                <li>కరగని ఘనపదార్థం, ఒక ద్రవము యొక్క మిశ్రమం నుండి <strong>వడపోత ప్రక్రియ</strong> ద్వారా అందలి అంశాలను వేరు చేయవచ్చు.</li>
+                <li>ఒక ద్రవమును దాని భాష్పముగా మార్చే ప్రక్రియను <strong>భాష్పీభవనం</strong> అంటారు. ఒక ద్రవములో కరిగి ఉన్న ఘనపదార్థాన్ని వేరు చేయడానికి భాష్పీభవన ప్రక్రియను ఉపయోగిస్తారు.</li>
+                <li>ఒక ద్రావణంలో అంతకుమించి అదనపు పదార్థము కరగడానికి వీలు లేనటువంటి ద్రావణాన్ని <strong>సంతృప్త ద్రావణం</strong> అంటారు.</li>
+                <li>ఒక ద్రావణాన్ని వేడి చేయడం ద్వారా దానిలో మరికొంత పదార్థాన్ని కరిగేలా చేయవచ్చు.</li>
+                <li><strong>నీరు</strong> తనలో కరిగే పదార్థాలను వివిధ పరిమాణాలలో కరిగించుకుంటుంది.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>అభ్యాసం (Exercises - ప్రశ్నలు & జవాబులు)</h2>
+            <ol>
+                <li><strong>ఒక మిశ్రమం నుండి వేర్వేరు అంశాలను మనం ఎందుకు వేరు చేయాలి? రెండు ఉదాహరణలు ఇవ్వండి.</strong><br>జవాబు: హానికరమైన లేదా పనికిరాని పదార్థాలను తొలగించడానికి మరియు ఉపయోగకరమైన పదార్థాలను విడిగా వాడుకోవడానికి వేరు చేస్తాం. (ఉదా: 1. బియ్యం నుండి రాళ్ళను తొలగించుట, 2. పాలను చిలికి వెన్నను తీయుట).</li>
+                <li><strong>తూర్పారబట్టడం అంటే ఏమిటి? దీనిని మనం ఎక్కడ ఉపయోగిస్తాము?</strong><br>జవాబు: గాలి ద్వారా లేదా గాలిని ఊదడం ద్వారా మిశ్రమంలోని బరువైన మరియు తేలికైన అంశాలను వేరు చేసే పద్ధతిని తూర్పారబట్టడం అంటారు. దీనిని ధాన్యం నుండి పొట్టును వేరు చేయడానికి రైతులు ఉపయోగిస్తారు.</li>
+                <li><strong>వండడానికి ముందు పప్పులలో ఉండే పొట్టు, మలిన కణాలను ఏ విధంగా వేరు చేస్తారు?</strong><br>జవాబు: పప్పులలో నీరు పోసినప్పుడు మలినాలు తేలికగా ఉండి పైకి వస్తాయి లేదా అవక్షేపణం చెందుతాయి. ఆపై నీటిని తేర్చి (Decantation) వేరు చేస్తాం.</li>
+                <li><strong>జల్లెడ పట్టడం అంటే ఏమిటి? దీనిని ఎక్కడ ఉపయోగిస్తారు?</strong><br>జవాబు: వేర్వేరు పరిమాణాలు కలిగిన మిశ్రమ పదార్థాలను జల్లెడ రంధ్రాల ద్వారా వేరు చేసే పద్ధతిని జల్లెడ పట్టడం అంటారు. దీనిని పిండిలోని ఊకను వేరు చేయడానికి, మరియు నిర్మాణ రంగంలో ఇసుకలోని రాళ్లను వేరు చేయడానికి ఉపయోగిస్తారు.</li>
+                <li><strong>ఇసుకని నీటిని వాటి మిశ్రమం నుండి ఏ విధంగా వేరు చేస్తారు?</strong><br>జవాబు: అవక్షేపణం (ఇసుక అడుగునకు చేరుట), తేర్చడం ద్వారా లేదా వడపోత (Filtration) ద్వారా ఇసుకను నీటి నుండి వేరు చేస్తాం.</li>
+                <li><strong>గోధుమ పిండిలో కలిసి ఉన్న చక్కెరను వేరు చేయగలమా? ఒకవేళ చేయగలిగితే, మీరు ఎలా చేస్తారు?</strong><br>జవాబు: చేయవచ్చు. పిండి, చక్కెర మిశ్రమానికి నీరు కలిపితే చక్కెర కరుగుతుంది, పిండి కరగదు. వడపోత ద్వారా పిండిని వేరు చేసి, భాష్పీభవనం ద్వారా చక్కెరను పొందవచ్చు.</li>
+                <li><strong>బురద నీటి నమూనా నుండి స్వచ్ఛమైన నీటిని ఏ విధంగా పొందగలరు?</strong><br>జవాబు: బురద నీటిని అవక్షేపణానికి గురిచేసి మట్టిని అడుగునకు చేర్చాలి. ఆపై తేర్చిన నీటిని వడపోత కాగితం ద్వారా వడపోసి స్వచ్ఛమైన నీటిని పొందవచ్చు.</li>
+                <li><strong>ఖాళీలను పూరించండి:</strong>
+                    <ul>
+                        <li>(ఎ) వరి గింజలను దాని దుబ్బుల నుండి వేరు చేసే పద్ధతిని <strong>నూర్పిడి (Threshing)</strong> అంటారు.</li>
+                        <li>(బి) పాలు మరిగిన తర్వాత చల్లార్చి, ఒక గుడ్డ ముక్కపై పోసినప్పుడు, దానిపై మీగడ మిగిలిపోతుంది. పాల నుండి మీగడను వేరు చేసే ఈ ప్రక్రియ <strong>వడపోత (Filtration)</strong> కి ఉదాహరణ.</li>
+                        <li>(సి) <strong>భాష్పీభవనం (Evaporation)</strong> ప్రక్రియ ద్వారా సముద్రపు నీటి నుండి ఉప్పు లభిస్తుంది.</li>
+                        <li>(డి) బురద నీటిని ఒక బకెట్లో ఒక రాత్రంతా ఉంచినప్పుడు, దానిలోని మలినాలు బకెట్ అడుగునకు చేరతాయి. అప్పుడు పై నుండి స్వచ్ఛమైన నీరు వేరు చేయబడుతుంది. నీటిని వేరు చేయుటలో ఉపయోగించిన ఈ ప్రక్రియ <strong>అవక్షేపణం మరియు తేర్చడం</strong> కి ఉదాహరణ.</li>
+                    </ul>
+                </li>
+                <li><strong>తప్పు - ఒప్పు / అవును - కాదు:</strong>
+                    <ul>
+                        <li>(ఎ) పేలు, నీటి మిశ్రమాన్ని వడపోత ద్వారా వేరుచేయవచ్చు. (<strong>తప్పు</strong>)</li>
+                        <li>(బి) ఉప్పు, చక్కెర పొడుల మిశ్రమాన్ని తూర్పార బట్టడం ప్రక్రియ ద్వారా వేరు చేయవచ్చు. (<strong>తప్పు</strong>)</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <footer>
+            <p>పదార్థాలను వేరు చేయుట - తెలుగు పాఠ్యాంశం &copy; 2026 | సర్వ హక్కులు రిజర్వ్ చేయబడ్డాయి</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Function to load and display user-uploaded images dynamically
+        function loadImage(event, previewId) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById(previewId);
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>
