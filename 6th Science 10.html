@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 - అయస్కాంతాలతో సరదాలు</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --primary-color: #1a73e8;
+            --secondary-color: #e8f0fe;
+            --accent-color: #f2994a;
+            --border-color: #dcdcdc;
+            --note-bg: #fff8e1;
+            --note-border: #ffd54f;
+            --quote-bg: #e3f2fd;
+            --quote-border: #90caf9;
+            --table-header-bg: #1a73e8;
+            --table-header-text: #ffffff;
+            --table-row-even: #f8f9fa;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --primary-color: #bb86fc;
+            --secondary-color: #2d2d2d;
+            --accent-color: #ffb74d;
+            --border-color: #333333;
+            --note-bg: #2c2416;
+            --note-border: #ffa000;
+            --quote-bg: #1a2733;
+            --quote-border: #64b5f6;
+            --table-header-bg: #2d2d2d;
+            --table-header-text: #bb86fc;
+            --table-row-even: #252525;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Mandali', 'Nirmala UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #4285f4);
+            color: white;
+            padding: 10px 5px;
+            border-radius: 12px;
+            text-align: left;
+            position: relative;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.3em;
+            font-weight: bold;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        section {
+            background-color: var(--card-bg);
+            padding: 10px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .activity-box {
+            background-color: var(--secondary-color);
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .activity-box h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+
+        .note-box {
+            background-color: var(--note-bg);
+            border: 1px solid var(--note-border);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            background-color: var(--quote-bg);
+            border-left: 5px solid var(--quote-border);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .image-container p {
+            text-align: center;
+            font-size: 0.95em;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--table-header-text);
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--table-row-even);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .keywords-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .keywords-list li {
+            background-color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .question-item {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+<div class="container">
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        <h1>10.అయస్కాంతాలతో సరదాలు</h1>
+        <p style="text-align: center; margin-top: 10px; font-size: 1.2em;">6th Class Science </p>
+    </header>
+
+    <section>
+        <p><strong>పహేలి</strong> మరియు <strong>బూజో</strong> అధిక మొత్తంలో వ్యర్థ పదార్థాలను భారీ కుప్పలుగా పోగు చేసిన ప్రదేశానికి వెళ్లారు. ఏదో ఆసక్తికరమైన సంఘటన అక్కడ జరుగుతోంది! ఒక క్రేన్ చెత్త కుప్ప వైపు కదులుతోంది. క్రేన్ యొక్క పొడవాటి చేయి ఒక దిమ్మను కుప్ప పైకి దించింది. ఆ తర్వాత అది కదలడం ప్రారంభించింది. ఏమిటో ఊహించండి? అది దూరంగా జరిగినప్పుడు, అనేక <strong>ఇనుప వ్యర్థాల ముక్కలు</strong> దిమ్మకు అతుక్కొని ఉన్నాయి!</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.1.png?raw=true" alt="పటం 10.1: చెత్త నుండి ఇనుప ముక్కలను వేరు చేయుట">
+            <p>📷 (పటం 10.1: చెత్త నుండి ఇనుప ముక్కలను వేరు చేయుట)</p>
+        </div>
+
+        <p>వారు ఈ మధ్యనే అయస్కాంతాలపై చాలా ఆసక్తికరమైన పుస్తకాన్ని చదివి ఉన్నారు కావున చెత్త పోగువేయు ప్రదేశం నుండి ఇనుమును తీయడానికి క్రేన్ చివర ఒక <strong>అయస్కాంతం</strong> అమర్చబడి ఉంటుందని వెంటనే తెలుసుకున్నారు.</p>
+
+        <p>మీరు అయస్కాంతాలను చూసి ఉండవచ్చు మరియు వాటితో ఆనందంగా ఆడుకొని ఉండవచ్చు. అల్మరాలు లేదా రిఫ్రిజిరేటర్ల తలుపులు వంటి ఇనుప ఉపరితలాలకు అంటుకునే స్టిక్కర్లను మీరు చూశారా? కొన్ని పిన్ హోల్డర్ లలో పిన్నులు హోల్డర్కు అతుక్కొని ఉంటాయి. కొన్ని పెన్సిల్ బాక్సులలో, మూసే అమరిక లేకుండానే మనం మూతవేసినపుడు మూత గట్టిగా అతుక్కుపోతుంది. అటువంటి స్టిక్కర్లు, పిన్ హోల్డర్లు మరియు పెన్సిల్ బాక్సుల లోపల అయస్కాంతాలు అమర్చబడి ఉంటాయి.</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.2.png?raw=true" alt="పటం 10.2: అయస్కాంతాలను కలిగిన కొన్ని సాధారణ వస్తువులు">
+            <p>📷 (పటం 10.2: అయస్కాంతాలను కలిగిన కొన్ని సాధారణ వస్తువులు)</p>
+        </div>
+
+        <div class="note-box">
+            💡 మీ వద్ద ఇటువంటి వస్తువులు ఏవైనా ఉంటే, వీటిలో దాగి ఉన్న అయస్కాంతాలను గుర్తించడానికి ప్రయత్నించండి.
+        </div>
+    </section>
+
+    <section>
+        <h2>అయస్కాంతాలు ఎలా కనుగొనబడ్డాయి?</h2>
+        <p>పురాతన గ్రీస్ <strong>మాగ్నెస్</strong> అనే గొర్రెల కాపరి ఉండేవాడట. అతను తన గొర్రెలను, మేకలను మేత కోసం దగ్గరలోని పర్వతాలకు తీసుకెళ్లేవాడు. తన మందను అదుపు చేసేందుకు కర్ర తీసుకుని వెళ్లేవాడు. ఆ కర్రకు ఒక చివరన చిన్న ఇనుప ముక్క అమర్చబడి ఉంది. ఒక రోజు తన కర్రను పర్వతం మీద ఉన్న ఒక రాతి పై నుండి తీయడానికి గట్టిగా లాగవలసి రావడం అతనికి ఆశ్చర్యం కలిగించింది.</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.3.png?raw=true" alt="పటం 10.3: కొండ వాలులో సహజ అయస్కాంతం">
+            <p>📷 (పటం 10.3: కొండ వాలులో సహజ అయస్కాంతం)</p>
+        </div>
+
+        <p>ఆ రాయి కర్రని ఆకర్షిస్తున్నట్లు అనిపించింది. ఆ రాయి <strong>సహజ అయస్కాంతం</strong> అందువల్ల అది గొర్రెల కాపరి కర్ర యొక్క ఇనుప కొనను ఆకర్షించింది. ఈ విధంగా సహజ అయస్కాంతాలు కనుగొనబడ్డాయని చెబుతారు. బహుశా ఆ గొర్రెల కాపరి పేరు మీద కావచ్చు, అలాంటి రాళ్లకు <strong>మాగ్నెటైట్</strong> అనే పేరు పెట్టారు. <strong>మాగ్నెటైట్</strong> ఇనుమును కలిగి ఉంటుంది. <strong>మెగ్నీషియా</strong> అనే ప్రాంతంలో మొట్టమొదటి మాగ్నెటైట్ కనుగొనబడిందని కొంత మంది ప్రజలు నమ్ముతున్నారు.</p>
+
+        <p>ఇనుమును ఆకర్షించే ధర్మం కలిగిన పదార్ధాలను <strong>అయస్కాంతాలు</strong> అంటారు. ఇదే అయస్కాంతం కనుగొనడం వెనుక ఉన్న కథ.</p>
+
+        <p>ఏది ఏమైనప్పటికీ, కొన్ని రాళ్లకు ఇనుపముక్కలను ఆకర్షించే గుణం ఉందని ప్రజలు ఇప్పుడు కనుగొన్నారు. ఈ రాళ్ళకు చెందిన చిన్న ముక్కలకు కొన్ని ప్రత్యేక లక్షణాలు ఉన్నాయని కూడా వారు గుర్తించారు. సహజంగా లభించే ఈ పదార్థాలకు వారు అయస్కాంతాలు అని పేరు పెట్టారు. అనంతరం ఇనుపముక్కల నుండి అయస్కాంతాలను తయారు చేసే ప్రక్రియ కనుగొనబడింది. వీటిని <strong>కృత్రిమ అయస్కాంతాలు</strong> అంటారు. ఈ రోజుల్లో కృత్రిమ అయస్కాంతాలను వివిధ ఆకారాలలో తయారు చేస్తున్నారు.</p>
+
+        <p>ఉదాహరణకు, <strong>దండాయస్కాంతం</strong>, <strong>గుర్రపు నాడా అయస్కాంతం</strong>, <strong>స్థూపాకార లేదా గుండ్రటి చివరలు గల అయస్కాంతం</strong>.</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.4.png?raw=true" alt="పటం 10.4: వివిధ ఆకారాలలో అయస్కాంతాలు">
+            <p>📷 (పటం 10.4: వివిధ ఆకారాలలో అయస్కాంతాలు)</p>
+        </div>
+
+        <div class="activity-box">
+            <h4>కృత్యం 1</h4>
+            <p>ఒక ప్లాస్టిక్ లేదా కాగితం కప్పును తీసుకోండి. పటం 10.5లో చూపిన విధంగా దానిని క్లాంప్ సహాయంతో ఒక స్టాండుకు బిగించండి. కప్పు లోపల ఒక అయస్కాంతాన్ని ఉంచి, ఆ అయస్కాంతం కనిపించకుండా కాగితంతో కప్పండి. ఇనుముతో చేయబడిన క్లిప్కు ఒక దారాన్ని కట్టండి. దారం యొక్క ఇంకొక కొనను స్టాండ్ యొక్క అడుగు భాగానికి కట్టండి. క్లిప్ను కప్పు అడుగు భాగం దగ్గరకు తీసుకురండి. క్లిప్ గాలిలో ఎటువంటి ఆధారం లేకుండా గాలిపటంలా పైకి తేలుతుంది.</p>
+            <div class="image-container">
+                <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.5.png?raw=true" alt="పటం 10.5: అయస్కాంత ప్రభావం - ఇనుప క్లిప్ గాలిలో వేలాడుట">
+                <p>📷 (పటం 10.5: అయస్కాంత ప్రభావం - ఇనుప క్లిప్ గాలిలో వేలాడుట)</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>10.1 అయస్కాంత మరియు అనయస్కాంత పదార్థాలు</h2>
+        
+        <div class="activity-box">
+            <h4>కృత్యం 2 ("మాగ్నెస్ నడక")</h4>
+            <p>మనం మాగ్నెస్ అడుగుజాడల్లో నడద్దాం. ఒక చిన్న అయస్కాంతాన్ని హాకీ స్టిక్, చేతి కర్ర లేదా క్రికెట్ వికెట్కి టేప్ లేదా కొంత జిగురుతో అతికిద్దాం. పాఠశాల ఆట స్థలంలో మరియు తరగతి గదిలో వస్తువులను పరీక్షించండి. ఏ వస్తువులు అయస్కాంతానికి అంటుకున్నాయో గమనించండి.</p>
+        </div>
+
+        <p>మీ పరిసరాల నుండి రోజువారీ ఉపయోగించే వివిధ వస్తువులను సేకరించి పట్టికలో నమోదు చేయండి:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>వస్తువు పేరు</th>
+                    <th>వస్తువు తయారైన పదార్థం</th>
+                    <th>ఆకర్షించబడడం (అవును/కాదు)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ఇనుపగుండు</td>
+                    <td>ఇనుము</td>
+                    <td>అవును</td>
+                </tr>
+                <tr>
+                    <td>స్కేలు</td>
+                    <td>ప్లాస్టిక్</td>
+                    <td>కాదు</td>
+                </tr>
+                <tr>
+                    <td>షూ</td>
+                    <td>తోలు</td>
+                    <td>?</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 0.9em; text-align: center; color: #666666;">(పట్టిక 10.1: అయస్కాంతంచే ఆకర్షించబడే వస్తువులను కనుగొనుట)</p>
+
+        <p>అయస్కాంతం కొన్ని పదార్థాలను ఆకర్షిస్తుందని, కొన్ని అయస్కాంతం వైపు ఆకర్షించబడవని మనం అర్థం చేసుకున్నాం. అయస్కాంతం వైపు ఆకర్షించబడిన పదార్థాలను <strong>అయస్కాంత పదార్థాలు</strong> అంటారు. ఉదాహరణకు, <strong>ఇనుము, నికెల్ లేదా కోబాల్ట్</strong>. అయస్కాంతం వైపు ఆకర్షించబడని పదార్థాలను <strong>అనయస్కాంత పదార్థాలు</strong> అని అంటారు.</p>
+
+        <div class="quote-box">
+            💬 <strong>బూజో ప్రశ్న:</strong> ఒక దర్జీ తన చొక్కాపై బటన్లు కుడుతున్నాడు. సూది అతని చేతి నుండి నేలపైకి జారిపోయింది, సూదిని వెతకడంలో మీరు దర్జీకి సహాయం చేయగలరా?
+        </div>
+
+        <div class="activity-box">
+            <h4>కృత్యం 3</h4>
+            <p>ఇసుక లేదా మట్టిలో అయస్కాంతాన్ని కదపండి. అయస్కాంతాన్ని బయటకు తీయండి. అయస్కాంతానికి కొన్ని ఇసుక లేదా మట్టి కణాలు అంటుకున్నాయా? ఇసుక లేదా మట్టి కణాలను తొలగించడానికి అయస్కాంతాన్ని నెమ్మదిగా విదిలించండి. ఇవి మట్టి నుండి బయటకు తీయబడిన చిన్న <strong>ఇనుప ముక్కలు (ఇనుప రజను)</strong> కావచ్చు.</p>
+            <div class="image-container">
+                <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.6.png?raw=true" alt="పటం 10.6: అయస్కాంతం - ఎక్కువ/కొద్దిపాటి/అసలు లేని ఇనుపరజను">
+                <p>📷 (పటం 10.6: అయస్కాంతం - ఎక్కువ/కొద్దిపాటి/అసలు లేని ఇనుపరజను)</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ప్రాంతం పేరు (కాలనీ / పట్టణం / గ్రామం)</th>
+                    <th>ఇనుప రజను అంటుకోవడాన్ని గమనించారా? (ఎక్కువగా/కొద్దిగా/అసలు లేదు)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 0.9em; text-align: center;">(పట్టిక 10.2: ఇసుకలో రుద్దబడిన అయస్కాంతం)</p>
+    </section>
+
+    <section>
+        <h2>10.2 అయస్కాంత ధృవాలు</h2>
+        
+        <div class="activity-box">
+            <h4>కృత్యం 4</h4>
+            <p>కాగితం పై కొంత ఇనుప రజనును పరచండి. దీనిపై దండాయస్కాంతాన్ని ఉంచండి. అయస్కాంతం యొక్క వివిధ భాగాలు ఇనుప రజనుని ఆకర్షించే విధానాన్ని గమనించండి.</p>
+            <div class="image-container">
+                <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.7.png?raw=true" alt="పటం 10.7: దండయస్కాంతానికి అంటుకున్న ఇనుప రజను">
+                <p>📷 (పటం 10.7: దండయస్కాంతానికి అంటుకున్న ఇనుప రజను)</p>
+            </div>
+        </div>
+
+        <p>దండాయస్కాంతం యొక్క <strong>రెండు చివరలకు</strong> దగ్గరగా ఉన్న ప్రాంతం వైపు ఇనుప రజను ఎక్కువగా ఆకర్షింపబడుతున్నట్లుగా మనం గమనిస్తాం.</p>
+
+        <div class="quote-box">
+            💬 <strong>పహేలి చిక్కు ప్రశ్న:</strong> మీకు ఒకేలా ఉండే రెండు కడ్డీలు ఇవ్వబడ్డాయి. వాటిలో ఒకటి అయస్కాంతం, మరొకటి సాధారణ ఇనుప కడ్డీ. ఏది అయస్కాంతమో, మీరు ఎలా కనుగొంటారు?
+        </div>
+    </section>
+
+    <section>
+        <h2>10.3 దిశలను కనుగొనడం</h2>
+        <p>చైనాలోని <strong>హెూయాంగ్ టి</strong> అనే చక్రవర్తి రథంపై ఏ దిశలోనైనా తిరగగలిగే ఒక స్త్రీ విగ్రహం ఉండేదట. దాని చాచిన చేయి ఎల్లప్పుడూ <strong>దక్షిణం వైపు</strong> చూపుతూ నిశ్చల స్థితిలో ఉంటుంది.</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.8.png?raw=true" alt="పటం 10.8: దిశను కనుగొనే విగ్రహం ఉన్న రథం">
+            <p>📷 (పటం 10.8: దిశను కనుగొనే విగ్రహం ఉన్న రథం)</p>
+        </div>
+
+        <div class="activity-box">
+            <h4>కృత్యం 5</h4>
+            <p>ఒక దండాయస్కాంతాన్ని మధ్యలో దారంతో కట్టి చెక్క స్టాండ్ నుండి వ్రేలాడదీయండి. అయస్కాంతం స్వేచ్ఛగా తిరిగేలా చూసి నిశ్చలస్థితికి రానివ్వండి. నిశ్చలస్థితికి వచ్చినప్పుడు అయస్కాంతం చివరల స్థానాలను గుర్తించండి.</p>
+            <div class="image-container">
+                <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.9.png?raw=true" alt="పటం 10.9: స్వేచ్ఛగా వ్రేలాడుతున్న దండాయస్కాంతం">
+                <p>📷 (పటం 10.9: స్వేచ్ఛగా వ్రేలాడుతున్న దండాయస్కాంతం)</p>
+            </div>
+        </div>
+
+        <p>స్వేచ్ఛగా వ్రేలాడదీసిన దండాయస్కాంతం ఎల్లప్పుడూ ప్రత్యేకంగా <strong>ఉత్తర-దక్షిణ దిక్కులలో</strong> నిశ్చలస్థితికి వస్తుందని మనం కనుగొంటాం.</p>
+
+        <p>ఉత్తరం వైపు చూపే అయస్కాంతం యొక్క చివరను <strong>ఉత్తర ధృవం (North Pole - N)</strong> అని, దక్షిణం వైపు చూపే మరొక చివరను <strong>దక్షిణ ధృవం (South Pole - S)</strong> అంటారు.</p>
+
+        <p>అయస్కాంతాల ఈ లక్షణం ఆధారంగా అభివృద్ధి చేయబడిన పరికరమే <strong>దిక్సూచి (Compass)</strong>. ఇది గాజు మూత కలిగిన చిన్న పెట్టె, దీనిలో ఇరుసు పై అయస్కాంతీకరించిన సూది స్వేచ్ఛగా తిరుగగలిగేలా అమర్చబడి ఉంటుంది.</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.10.png?raw=true" alt="పటం 10.10: దిక్సూచి">
+            <p>📷 (పటం 10.10: దిక్సూచి)</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>10.4 మీ సొంత అయస్కాంతాన్ని తయారు చేసుకోండి</h2>
+        <p>ఒక దీర్ఘచతురస్రాకారపు ఇనుము ముక్కను టేబుల్ పై ఉంచండి. ఒక దండాయస్కాంతాన్ని తీసుకొని దాని ధృవాలలో ఒకదానిని ఇనుప కడ్డీ ఒక అంచు దగ్గర ఉంచి, పైకి ఎత్తకుండా మరొక చివర వరకు జరపండి. ఈ విధానాన్ని సుమారు <strong>30-40 సార్లు</strong> పునరావృతం చేయండి. అప్పుడు అది అయస్కాంతంగా మారుతుంది!</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.11.png?raw=true" alt="పటం 10.11: మీ సొంత అయస్కాంతాన్ని తయారు చేసుకొనుట">
+            <p>📷 (పటం 10.11: మీ సొంత అయస్కాంతాన్ని తయారు చేసుకొనుట)</p>
+        </div>
+
+        <div class="activity-box">
+            <h4>కృత్యం 6 (సొంత దిక్సూచి తయారీ)</h4>
+            <p>దండాయస్కాంతాన్ని ఉపయోగించి ఇనుపసూదిని అయస్కాంతీకరించండి. దానిని చిన్న కార్క్ లేదా ఫోమ్ ముక్క లోనికి చొప్పಿಸಿ నీటిలో తేలేలా చేయండి. సూది ఎల్లప్పుడూ ఒకే దిశను చూపుతుంది.</p>
+            <div class="image-container">
+                <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.12.png?raw=true" alt="పటం 10.12: ఒక కప్పులో దిక్సూచి">
+                <p>📷 (పటం 10.12: ఒక కప్పులో దిక్సూచి)</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>10.5 అయస్కాంతాల మధ్య ఆకర్షణ మరియు వికర్షణ</h2>
+        
+        <div class="activity-box">
+            <h4>బొమ్మ కార్ల కృత్యం</h4>
+            <p>రెండు చిన్న బొమ్మ కార్లపై అయస్కాంతాలను అమర్చి వాటిని దగ్గరగా ఉంచండి. సజాతి మరియు విజాతి ధృవాల ప్రవర్తనను పరిశీలించండి.</p>
+            <div class="image-container">
+                <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.13,14.png?raw=true" alt="పటం 10.13 & 10.14: సజాతి మరియు విజాతి ధృవాల ఆకర్షణ/వికర్షణ">
+                <p>📷 (పటం 10.13 & 10.14: సజాతి మరియు విజాతి ధృవాల ఆకర్షణ/వికర్షణ)</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>కార్ల యొక్క స్థానం</th>
+                    <th>కార్లు ఎలా కదులుతాయి?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A కారు ముందు భాగం B కారు ముందు భాగం వైపు</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td>A కారు వెనుక భాగం B కారు ముందు భాగం వైపు</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td>A కారు ముందు భాగం B కారు వెనుక భాగం వైపు</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td>B కారు వెనుక భాగం A కారు వెనుక భాగం వైపు</td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 0.9em; text-align: center;">(పట్టిక 10.3)</p>
+
+        <p><strong>ముగింపు:</strong> అయస్కాంతాల <strong>విజాతి ధృవాలు</strong> ఒకదానికొకటి ఆకర్షించుకుంటాయి, అయితే <strong>సజాతి ధృవాలు</strong> ఒకదానికొకటి వికర్షించుకుంటాయి.</p>
+
+        <h3>కొన్ని జాగ్రత్తలు</h3>
+        <p>వేడి చేసినప్పుడు, సుత్తితో కొట్టినప్పుడు లేదా కొంత ఎత్తు నుండి పడేసినప్పుడు అయస్కాంతాలు వాటి లక్షణాలను కోల్పోతాయి.</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.15.png?raw=true" alt="పటం 10.15: అయస్కాంతాలను వేడి చేయడం, సుత్తితో కొట్టడం మరియు పడవేయడం">
+            <p>📷 (పటం 10.15: అయస్కాంతాలను వేడి చేయడం, సుత్తితో కొట్టడం మరియు పడవేయడం)</p>
+        </div>
+
+        <p>దండాయస్కాంతాలను సురక్షితంగా ఉంచడానికి, వాటి విజాతి ధృవాలు ఒకే వైపు ఉండే విధంగా జతగా ఉంచి, మధ్యలో చెక్కముక్క, రెండు మెత్తని ఇనుము ముక్కలను ఉంచాలి.</p>
+        
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.10.16.png?raw=true" alt="పటం 10.16: అయస్కాంతాలను భద్రపరచడం">
+            <p>📷 (పటం 10.16: అయస్కాంతాలను భద్రపరచడం)</p>
+        </div>
+
+        <div class="note-box">
+            ⚠️ క్యాసెట్లు, మొబైల్స్, టెలివిజన్, మ్యూజిక్ సిస్టమ్, కాంపాక్ట్ డిస్క్లు (CDs) మరియు కంప్యూటర్లకు దూరంగా అయస్కాంతాలను ఉంచండి.
+        </div>
+    </section>
+
+    <section>
+        <h2>కీలకపదాలు</h2>
+        <ul class="keywords-list">
+            <li>దిక్సూచి</li>
+            <li>అయస్కాంతం</li>
+            <li>మాగ్నెటైట్</li>
+            <li>ఉత్తర ధృవం</li>
+            <li>దక్షిణ ధృవం</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>సారాంశం</h2>
+        <ul>
+            <li><strong>మాగ్నెటైట్</strong> ఒక సహజ అయస్కాంతం.</li>
+            <li>అయస్కాంతం ఇనుము, నికెల్, కోబాల్ట్ వంటి పదార్థాలను ఆకర్షిస్తుంది. వీటిని <strong>అయస్కాంత పదార్థాలు</strong> అంటారు.</li>
+            <li>అయస్కాంతం వైపు ఆకర్షింపబడని పదార్థాలను <strong>అనయస్కాంత పదార్థాలు</strong> అంటారు.</li>
+            <li>ప్రతి అయస్కాంతానికి రెండు అయస్కాంత ధృవాలు ఉంటాయి: <strong>ఉత్తరం మరియు దక్షిణం</strong>.</li>
+            <li>స్వేచ్ఛగా వేలాడదీసిన అయస్కాంతం ఎల్లప్పుడూ <strong>ఉత్తర-దక్షిణ దిశలను</strong> సూచిస్తుంది.</li>
+            <li>అయస్కాంతాల <strong>విజాతి ధృవాలు</strong> ఆకర్షించుకుంటాయి, <strong>సజాతి ధృవాలు</strong> వికర్షించుకుంటాయి.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>అభ్యాసం</h2>
+        
+        <h3>1. ఈ కింద ఖాళీలను పూరించండి:</h3>
+        <p>(i) కృత్రిమ అయస్కాంతాలు <strong>దండాయస్కాంతం</strong> మరియు <strong>గుర్రపు నాడా అయస్కాంతం</strong> వంటి వివిధ ఆకృతులలో తయారు చేయబడ్డాయి.</p>
+        <p>(ii) అయస్కాంతంచే ఆకర్షించబడే పదార్థాలను <strong>అయస్కాంత పదార్థాలు</strong> అంటారు.</p>
+        <p>(iii) కాగితం <strong>అనయస్కాంత</strong> పదార్థం కాదు (అయస్కాంత పదార్థం కాదు).</p>
+        <p>(iv) గతంలో, నావికులు <strong>సహజ అయస్కాంతాలను</strong> వేలాడదీయడం ద్వారా దిక్కులను కనుగొనేవారు.</p>
+        <p>(v) అయస్కాంతం ఎల్లప్పుడూ <strong>రెండు</strong> ధృవాలను కలిగి ఉంటుంది.</p>
+
+        <h3>2. కింది వాక్యాలు తప్పో (X), ఒప్పో (✓) తెలపండి:</h3>
+        <ul>
+            <li>(i) ఒక స్థూపాకార అయస్కాంతానికి ఒకే ఒక ధృవం ఉంటుంది. — <strong>(X)</strong></li>
+            <li>(ii) కృత్రిమ అయస్కాంతాలు గ్రీస్లో కనుగొనబడ్డాయి. — <strong>(X)</strong> (సహజ అయస్కాంతాలు గ్రీస్లో కనుగొనబడ్డాయి)</li>
+            <li>(iii) అయస్కాంతం యొక్క సజాతి ధృవాలు ఒకదానికొకటి వికర్షించుకుంటాయి. — <strong>(✓)</strong></li>
+            <li>(iv) దండాయస్కాంతాన్ని ఇనుప రజనుకి దగ్గరగా తీసుకువచ్చినప్పుడు దాని మధ్యభాగంలో ఎక్కువగా అంటుకుంటుంది. — <strong>(X)</strong> (చివరలలో ఎక్కువగా అంటుకుంటుంది)</li>
+            <li>(v) దండాయస్కాంతాలు ఎల్లప్పుడూ ఉత్తర-దక్షిణ దిశలను చూపుతాయి. — <strong>(✓)</strong></li>
+            <li>(vi) ఏ ప్రదేశంలోనైనా తూర్పు-పడమర దిశను కనుగొనడానికి దిక్సూచిని ఉపయోగించవచ్చు. — <strong>(✓)</strong></li>
+            <li>(vii) రబ్బరు ఒక అయస్కాంత పదార్థం. — <strong>(X)</strong></li>
+        </ul>
+
+        <h3>3 నుండి 10 ప్రశ్నలు & సమాధానాలు:</h3>
+        <div class="question-item">
+            <p><strong>3. పెన్సిల్ ను చెక్కే మర ప్లాస్టిక్తో తయారు చేయబడినప్పటికీ అయస్కాంతం యొక్క రెండు ధృవాలచే ఆకర్షించబడుతుంది. దానిలో కొంత భాగాన్ని తయారు చేయడానికి ఉపయోగించబడిన పదార్థాన్ని పేర్కొనండి?</strong><br>
+            సమాధానం: ఆ మరను తయారు చేయడానికి ఇనుము లేదా ఉక్కు వంటి అయస్కాంత పదార్థాన్ని ఉపయోగించి ఉంటారు.</p>
+        </div>
+
+        <div class="question-item">
+            <p><strong>4. నిలువు వరుస I మరియు II జతపరచడం:</strong></p>
+            <table>
+                <tr><th>నిలువు వరుస I</th><th>నిలువు వరుస II</th></tr>
+                <tr><td>ఉత్తర - ఉత్తర</td><td>వికర్షింపబడును</td></tr>
+                <tr><td>ఉత్తర - దక్షిణ</td><td>ఆకర్షింపబడును</td></tr>
+                <tr><td>దక్షిణ - ఉత్తర</td><td>ఆకర్షింపబడును</td></tr>
+                <tr><td>దక్షిణ - దక్షిణ</td><td>వికర్షింపబడును</td></tr>
+            </table>
+        </div>
+
+        <div class="question-item">
+            <p><strong>5. అయస్కాంతం యొక్క ఏవైనా రెండు ధర్మాలను వ్రాయండి:</strong><br>
+            1. స్వేచ్ఛగా వేలాడదీసిన అయస్కాంతం ఎల్లప్పుడూ ఉత్తర-దక్షిణ దిశలను సూచిస్తుంది.<br>
+            2. అయస్కాంతం యొక్క సజాతి ధృవాలు వికర్షించుకుంటాయి, విజాతి ధృవాలు ఆకర్షించుకుంటాయి.</p>
+        </div>
+
+        <div class="question-item">
+            <p><strong>6. దండాయస్కాంతం యొక్క ధృవాలు ఎక్కడ ఉంటాయి?</strong><br>
+            సమాధానం: దండాయస్కాంతం యొక్క ధృవాలు దాని రెండు చివరల వద్ద ఉంటాయి.</p>
+        </div>
+
+        <div class="question-item">
+            <p><strong>7. గుర్తులు లేని దండాయస్కాంతంలో ఉత్తర ధృవాన్ని ఎలా కనుగొంటారు?</strong><br>
+            సమాధానం: ఆ అయస్కాంతాన్ని దారంతో స్వేచ్ఛగా వేలాడదీయాలి. అది నిశ్చలస్థితికి వచ్చినప్పుడు ఉత్తర దిశను సూచించే కొనను ఉత్తర ధృవంగా గుర్తించవచ్చు.</p>
+        </div>
+
+        <div class="question-item">
+            <p><strong>8. ఇనుప ముక్కను అయస్కాంతంగా ఎలా మార్చగలరు?</strong><br>
+            సమాధానం: ఒక దండాయస్కాంతాన్ని తీసుకొని దాని ఒక ధృవాన్ని ఇనుప కడ్డీ ఒక అంచు వద్ద ఉంచి, కడ్డీ పొడవు వెంబడి ఒకే దిశలో 30-40 సార్లు రుద్దడం ద్వారా ఇనుప ముక్కను అయస్కాంతంగా మార్చవచ్చు.</p>
+        </div>
+
+        <div class="question-item">
+            <p><strong>9. దిక్కులను కనుగొనడానికి దిక్సూచి ఎలా ఉపయోగించబడుతుంది?</strong><br>
+            సమాధానం: దిక్సూచిని ఉంచినప్పుడు దాని సూది ఉత్తర-దక్షిణ దిశను సూచిస్తుంది. డయల్ పై గుర్తించిన దిశలతో సూదిని సరిపోల్చి దిక్కులను సులభంగా కనుగొనవచ్చు.</p>
+        </div>
+
+        <div class="question-item">
+            <p><strong>10. పడవ కృత్యం జతపరచడం:</strong><br>
+            - పడవ అయస్కాంతం వైపు ఆకర్షింపబడుతుంది ➔ <strong>పడవ తల వైపు దక్షిణ ధృవం ఉండేలా దానిలో ఒక అయస్కాంతం అమర్చబడింది (విజాతి ధృవాలు).</strong><br>
+            - అయస్కాంతం వల్ల పడవ ప్రభావితం కాదు ➔ <strong>పడవ అనయస్కాంత పదార్థంతో తయారుచేయబడింది.</strong><br>
+            - ఉత్తర ధృవాన్ని పడవ తల దగ్గరికి తీసుకువస్తే కదులుతుంది ➔ <strong>పడవ తల వైపు దక్షిణ ధృవం అమర్చబడింది.</strong><br>
+            - దూరంగా కదులుతుంది ➔ <strong>పడవ తల వైపు ఉత్తర ధృవం అమర్చబడింది (సజాతి ధృవాలు వికర్షణ).</strong><br>
+            - తన దిశను మార్చుకోకుండా తేలుతుంది ➔ <strong>పడవ పొడవు వెంబడి చిన్న అయస్కాంతం అమర్చబడింది / లేదా ప్రభావితం కాలేదు.</strong></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>కొన్ని సూచించబడిన కృత్యాలు & చదవవలసిన విషయాలు</h2>
+        <ul>
+            <li><strong>దిక్సూచి కృత్యం:</strong> దిక్సూచిని ఉపయోగించి ఇల్లు లేదా తరగతి గది కిటికీలు మరియు ప్రవేశ ద్వారం ఉన్న దిశను కనుగొనండి.</li>
+            <li><strong>వడ్రంగికి సహాయం:</strong> చెక్క పొట్టులో కలిసిన ఇనుప మేకులు మరియు మరమేకులను వేరుచేయడానికి ఒక పెద్ద అయస్కాంతాన్ని ఉపయోగించి సులభంగా వేరుచేయవచ్చు.</li>
+            <li><strong>తెలివైన బొమ్మ తయారీ:</strong> బొమ్మ చేతిలో అయస్కాంతాన్ని అమర్చి ఆకర్షణ ధర్మం ద్వారా పనిచేసే బొమ్మను తయారు చేయవచ్చు. (పటం 10.17)</li>
+        </ul>
+        
+
+        <div class="note-box">
+            📚 <strong>చదవవలసిన విషయాలు:</strong> గాలిలో తేలియాడే లావుటా ద్వీపం గల కల్పిత గాథ <strong>‘గలివర్స్ ట్రావెల్స్’</strong> దీనిలో అయస్కాంతాల ప్రమేయం ఉన్నదా? తెలుసుకోండి!
+        </div>
+    </section>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        if (currentTheme === 'light') {
+            body.setAttribute('data-theme', 'dark');
+        } else {
+            body.setAttribute('data-theme', 'light');
+        }
+    }
+</script>
+
+</body>
+</html>
