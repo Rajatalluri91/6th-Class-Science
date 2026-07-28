@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <title>11. మన చుట్టూ ఉన్న గాలి</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mandali&display=swap');
+        :root {
+            --bg-color: #f4f9f6;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --header-bg: #2e7d32;
+            --header-text: #ffffff;
+            --accent-color: #4caf50;
+            --accent-light: #e8f5e9;
+            --border-color: #c8e6c9;
+            --table-header-bg: #388e3c;
+            --table-header-text: #ffffff;
+            --table-alt-bg: #f1f8f1;
+            --shadow: rgba(46, 125, 50, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121814;
+            --text-color: #e0e0e0;
+            --card-bg: #1e2621;
+            --header-bg: #1b5e20;
+            --header-text: #ffffff;
+            --accent-color: #81c784;
+            --accent-light: #1b3320;
+            --border-color: #2e4d34;
+            --table-header-bg: #1e4620;
+            --table-header-text: #ffffff;
+            --table-alt-bg: #18221c;
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Mandali', 'Gautami', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px;
+            line-height: 1.8;
+            font-size: 13pt;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .theme-toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Mandali', sans-serif;
+            font-size: 11pt;
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px var(--shadow);
+        }
+
+        .main-header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .main-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 26pt;
+            font-family: 'Mandali', sans-serif;
+        }
+
+        .main-header p {
+            margin: 0;
+            font-size: 14pt;
+            opacity: 0.9;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 12px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16pt;
+            font-family: 'Mandali', sans-serif;
+        }
+
+        h3 {
+            color: var(--text-color);
+            font-size: 13.5pt;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 5px;
+            font-family: 'Mandali', sans-serif;
+        }
+
+        p {
+            margin: 0 0 12px 0;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .activity-box {
+            background-color: var(--accent-light);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .activity-box h4 {
+            margin: 0 0 8px 0;
+            color: var(--accent-color);
+            font-size: 13pt;
+            font-family: 'Mandali', sans-serif;
+        }
+
+        .question-box {
+            background-color: var(--card-bg);
+            border: 2px dashed var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .image-container {
+            background-color: var(--accent-light);
+            border: 2px dashed var(--border-color);
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .image-container p {
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+            font-size: 11pt;
+            color: var(--accent-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11.5pt;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px var(--shadow);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--table-header-text);
+            font-weight: bold;
+            font-family: 'Mandali', sans-serif;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--table-alt-bg);
+        }
+
+        ul, ol {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .key-terms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .key-term-badge {
+            background-color: var(--accent-light);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-toggle-container">
+        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙 డార్క్ మోడ్</button>
+    </div>
+
+    <div class="main-header">
+        <h1>11. మన చుట్టూ ఉన్న గాలి</h1>
+        <p>శాస్త్ర విజ్ఞానం - 6వ తరగతి | సమగ్ర అధ్యయనం మరియు అభ్యాసాలు</p>
+    </div>
+
+    <div class="section-card">
+        <p>మనం జీవులన్నిటికీ <strong>గాలి అవసరమని</strong> 6వ అధ్యాయంలో నేర్చుకున్నాం. అయితే మీరు ఎప్పుడైనా గాలిని చూశారా? మీరు గాలిని చూసి ఉండకపోవచ్చు. కానీ, మీరు ఖచ్చితంగా దాని <strong>ఉనికిని</strong> అనేక విధాలుగా అనుభూతి చెంది ఉంటారు.</p>
+        <ul>
+            <li>మీరు చెట్ల ఆకుల సవ్వడిలో లేదా బట్టలు దండెంపై వేలాడుతూ కదులుతున్నప్పుడు దానిని గమనించి ఉంటారు.</li>
+            <li><strong>ఫ్యాన్</strong> స్విచ్ వేసినప్పుడు తెరిచి ఉన్న పుస్తకంలోని పేజీలు కదలడం ప్రారంభిస్తాయి.</li>
+            <li>కదిలే గాలి వలన మీ <strong>గాలిపటాన్ని</strong> ఎగరవేయడం సాధ్యపడుతుంది.</li>
+            <li>3వ అధ్యాయంలోని కృత్యము 3 లో ఇసుక, రంపపు పొట్టులను తూర్పారబట్టడం ద్వారా వేరు చేయడం మీకు గుర్తుందా? కదిలే గాలిలో తూర్పార పట్టడం మరింత ప్రభావంతంగా ఉంటుంది.</li>
+            <li><strong>తుఫానుల</strong> సమయంలో గాలి చాలా వేగంగా వీయడాన్ని మీరు గమనించి ఉంటారు. ఇది చెట్లను వేళ్ళతో సహా పెళ్లగించడం ఇంటి పై కప్పులను కొట్టుకుపోయేలా కూడా చేయవచ్చు.</li>
+        </ul>
+
+        <div class="question-box">
+            <strong>ప్రశ్న / కృత్యం:</strong> మీరు ఎప్పుడైనా కాగితపు ఫ్యాన్తో ఆడుకున్నారా?
+        </div>
+
+        <div class="activity-box">
+            <h4>కృత్యం 1: కాగితపు ఫ్యాన్ తయారీ</h4>
+            <p>పటం 11.2 లో చూపిన సూచనలను అనుసరించి కాగితపు ఫ్యాన్ను సొంతంగా చేద్దాం. కాగితపు ఫ్యాన్కు ఉన్న కర్రను పట్టుకుని ఖాళీ ప్రదేశంలో వివిధ దిశలలో ఉంచి ముందుకు, వెనుకకు కొద్దిగా కదిలించండి. ఏం జరుగుతుందో గమనించండి. కాగితపు ఫ్యాన్ తిరుగుతుందా? కాగితపు ఫ్యాన్ను తిరిగేలా చేసేది ఏది? <strong>కదిలేగాలి</strong>, అది నిజమేనా?</p>
+        </div>
+
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.11.1,2,3.png?raw=true" alt="వివిధ రకాల కాగితపు ఫ్యాన్లు, తయారీ విధానం మరియు గాలి వీచే దిశను తెలిపే యంత్రం">
+            <p>పటం 11.1: వివిధ రకాల కాగితపు ఫ్యాన్లు | పటం 11.2: ఒక సరళమైన కాగితపు ఫ్యాన్ను తయారుచేయుట | పటము 11.3: గాలి వీచే దిశను తెలిపే యంత్రం (కోడి బొమ్మతో కూడిన వెదర్ వెేన్)<br><small>QR కోడ్ & కోడ్: M319H9</small></p>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <h2>11.1 ప్రతి చోటా మన చుట్టూ గాలి ఉందా?</h2>
+        <p>మీ పిడికిలిని మూయండి అందులో ఏమి ఉంటుంది? ఏమీ లేదా? కనుగొనడానికి కింది కృత్యం చేయండి.</p>
+
+        <div class="activity-box">
+            <h4>కృత్యం 2: ఖాళీ సీసాతో ప్రయోగం</h4>
+            <p>ఒక తెరచి వున్న ఖాళీ సీసాను తీసుకోండి. అది నిజంగా ఖాళీగా ఉందా లేక లోపల ఏదైనా ఉందా? దానిని తలకిందులుగా తిప్పండి ఇప్పుడు అందులో ఏదైనా ఉందా? ఇప్పుడు పటం 11.4 లో చూపిన విధంగా తెరచివున్న సీసా మూతిని నీటితో నిండిన బకెట్లో ముంచండి. సీసాను గమనించండి. నీరు సీసాలోకి ప్రవేశిస్తుందా? ఇప్పుడు సీసాను కొంచెం పక్కకు వంచండి. ఇప్పుడు సీసాలోకి నీరు ప్రవేశిస్తుందా? మీరు సీసా నుండి గాలి బుడగలు బయటికి రావడం చూశారా లేదా బుడగల శబ్దం విన్నారా? ఇప్పుడు మీరు సీసాలో ఏముందో ఊహించగలరా?</p>
+        </div>
+
+        <p>అవును ! నిజమే. అది సీసాలోపల ఉన్న <strong>"గాలి"</strong>. సీసా ఏమాత్రం ఖాళీగా లేదు. వాస్తవానికి మీరు సీసాను తలకిందులు చేసినప్పుడు కూడా అది పూర్తిగా <strong>గాలితో నిండి ఉంది</strong>. అందుకే మీరు సీసాను తలకిందులు చేసినప్పటికీ సీసాలోకి నీరు ప్రవేశించలేకపోయింది. ఎందుకనగా గాలి బయటకు రావడానికి స్థలం లేదు. మీరు ఎప్పుడైతే సీసాను పక్కకు వంచారో ఆ గాలి సీసాలోపల నుండి బయటకు బుడగల రూపంలో రాగలుగుతుంది, గాలి ఆక్రమించిన ఖాళీ స్థలంలో నీరు నింపబడుతుంది.</p>
+
+        <p>ఈ కృత్యం గాలి ఖాళీ స్థలాన్ని ఆక్రమిస్తుందని తెలియచేస్తుంది. గాలి సీసాలోపలి మొత్తం స్థలాన్ని నింపుతుంది. గాలి మన చుట్టూ ఉన్న అన్ని ప్రదేశాల్లో ఉంటుంది. గాలికి <strong>రంగు లేదు</strong>, మనం దాని గుండా కూడా చూడగలం. అది <strong>పారదర్శకమైనది</strong>.</p>
+
+        <p>మన భూమి పలుచని గాలి పొరతో చుట్టబడి ఉంది. ఈ పొర భూమి ఉపరితలం నుండి అనేక కిలోమీటర్ల వరకు విస్తరించి ఉంది. దీనిని <strong>వాతావరణం</strong> అంటారు. మనం వాతావరణంలో పైకి వెళ్లే కొద్దీ గాలి పలుచబడుతుంది.</p>
+
+        <div class="question-box">
+            <strong>ప్రశ్న / ఆలోచించండి:</strong> పర్వతారోహకులు ఎత్తైన పర్వతాలు ఎక్కేటప్పుడు తమతో <strong>ఆక్సిజన్ సిలిండర్ను</strong> ఎందుకు తీసుకెళ్తారో మీరు ఆలోచించండి (పటం 11.5)?
+        </div>
+
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.11.4,5.png?raw=true" alt="ఖాళీ సీసాతో ప్రయోగాలు మరియు పర్వతారోహకులు ఆక్సిజన్ సిలిండర్లతో">
+            <p>పటం 11.4: ఖాళీ సీసాతో ప్రయోగాలు (నీటిలో ముంచడం) | పటం 11.5: పర్వతారోహకులు తమతో పాటు ఆక్సిజన్ సిలిండర్లను తీసుకువెళతారు</p>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <h2>11.2 గాలి దేనితో తయారు చేయబడింది?</h2>
+        <p>18వ శతాబ్దం వరకు ప్రజలు గాలి కేవలం ఒక పదార్థం అని భావించేవారు. పరిశోధనలు అది నిజం కాదని నిరూపించాయి. గాలి అనేక <strong>వాయువుల మిశ్రమం</strong>. ఈ మిశ్రమంలోని కొన్ని ప్రధాన అంశాల గురించి తెలుసుకుందాం:</p>
+
+        <h3>1. నీటి ఆవిరి</h3>
+        <p>గాలి నీటి ఆవిరిని కలిగి ఉంటుందని మనం నేర్చుకున్నాం. గాలి చల్లని ఉపరితలాన్ని తాకినప్పుడు అది ఘనీభవించడం వలన నీటి బిందువులు ఏర్పడతాయి. ప్రకృతిలోని గాలిలో నీటి బిందువులు ఉండడం <strong>జలచక్రంనకు చాలా ముఖ్యం</strong>.</p>
+
+        <h3>2. ఆక్సిజన్ / ఆమ్లజని</h3>
+        <div class="activity-box">
+            <h4>కృత్యం 3: కొవ్వొత్తి మరియు గాజు గ్లాసు ప్రయోగం</h4>
+            <p>మీ ఉపాధ్యాయుల సమక్షంలో ఒకే పొడవు కలిగిన రెండు కొవ్వొత్తులను బల్లపై అమర్చి వెలిగించండి. అందులో ఒక కొవ్వొత్తిని తలకిందులుగా చేసిన గాజు గ్లాస్ తో మూసివేయండి. కొంతసేపటి తరువాత గాజు గ్లాసుతో మూసివేసిన కొవ్వొత్తి ఆరిపోవడం గమనించవచ్చు. అయితే మరొక కొవ్వొత్తి వెలుగుతూనే ఉంటుంది. గాజు పాత్రలో మండుటకు సహాయపడే అంశం పరిమితంగా ఉన్నందున కొవ్వొత్తి ఆరిపోయినట్లు తెలుస్తుంది. మండడానికి సహాయపడే గాలిలోని ఈ అంశమే <strong>ఆక్సిజన్</strong>.</p>
+        </div>
+
+        <h3>3. నైట్రోజన్ / నత్రజని</h3>
+        <p>కృత్యము 3 లో కొవ్వొత్తి ఆరిపోయిన తర్వాత కూడా ఖాళీ సీసాలో గాలి ఉన్నదని గమనించారా? ఇది గాలిలో గల మండుటకు సహాయపడని ఏదో అంశం యొక్క ఉనికిని సూచిస్తుంది. గాలిలో గల ఈ అధిక భాగమే <strong>నైట్రోజన్</strong>.</p>
+
+        <h3>4. కార్బన్ డై ఆక్సైడ్</h3>
+        <p>మూసి ఉన్న గదిలో ఏదైనా పదార్థం మండుతుంటే మీకు ఊపిరి ఆడనట్లు అనిపించవచ్చు. ఇది మంట కొనసాగుతూ వుండడం వలన గదిలో ఎక్కువగా పేరుకుపోయిన <strong>కార్బన్ డై ఆక్సైడ్</strong> వలన జరుగుతుంది. మొక్కలు మరియు జంతువులు శ్వాసక్రియలో ఆక్సిజన్ను ఉపయోగించుకుని కార్బన్ డై ఆక్సైడ్ను విడుదల చేస్తాయి. ఎండుటాకులు మరియు పంట వ్యర్థాలను మండించకపోవడం మంచిది.</p>
+
+        <h3>5. ధూళి మరియు పొగ</h3>
+        <p>ఇంధనాలను మండించడం వల్ల పొగ ఉత్పత్తి అవుతుంది. పొగలో మనకు హానిచేసే వాయువులు మరియు సూక్ష్మ <strong>ధూళి రేణువులు</strong> వుంటాయి.</p>
+
+        <div class="activity-box">
+            <h4>కృత్యం 4: సూర్యకాంతిలో ధూళి కణాల పరిశీలన</h4>
+            <p>ఎండ బాగా పడే గదిలో తలుపులు, కిటికీలు మూసి ఒక చిన్న చీలిక గుండా సూర్యరశ్మి ప్రసరించేలా చేయండి. ఆ సూర్యకాంతి కిరణాలలో మెరుస్తూ కదులుతున్న చిన్న రేణువులను చూడండి (పటము 11.7). శీతాకాలంలో చెట్ల ఆకుల సందుల గుండా ప్రసరిస్తున్న కాంతి కిరణాలలో కూడా ఇవి కనిపిస్తాయి. ముక్కులోని శ్లేష్మము శ్వాస వ్యవస్థలోనికి ధూళికణాలు రాకుండా అడ్డుకుంటుంది.</p>
+        </div>
+
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.11.6,7,8.png?raw=true" alt="గాలిలో ఆక్సిజన్, ధూళి కణాల పరిశీలన మరియు ట్రాఫిక్ పోలీసు మాస్క్">
+            <p>పటం 11.6: గాలిలో ఆక్సిజన్ ఉంటుంది | పటం 11.7: సూర్యకాంతితో గాలిలో ధూళి కణాల పరిశీలన | పటం 11.8: ట్రాఫిక్ పోలీసు మాస్క్</p>
+        </div>
+
+        <h3>గాలి సంఘటన పట్టిక</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>వాయువు / అంశం</th>
+                    <th>సుమారు శాతం / వివరాలు</th>
+                    <th>ప్రధాన పాత్ర</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>నైట్రోజన్ (Nitrogen)</strong></td>
+                    <td>సుమారు 78% (ఎక్కువ భాగం)</td>
+                    <td>మంటలను నియంత్రించడంలో, మొక్కల పెరుగుదలకు సహకరిస్తుంది.</td>
+                </tr>
+                <tr>
+                    <td><strong>ఆక్సిజన్ (Oxygen)</strong></td>
+                    <td>సుమారు 21%</td>
+                    <td>శ్వాసక్రియకు మరియు పదార్థాలు మండుటకు అత్యంత ముఖ్యం.</td>
+                </tr>
+                <tr>
+                    <td><strong>కార్బన్ డై ఆక్సైడ్ & ఇతర వాయువులు</strong></td>
+                    <td>సుమారు 0.04%</td>
+                    <td>కిరణజన్య సంయోగక్రియకు మరియు ఉష్ణోగ్రత నియంత్రణకు.</td>
+                </tr>
+                <tr>
+                    <td><strong>నీటి ఆవిరి & ధూళి కణాలు</strong></td>
+                    <td>మారుతూ ఉంటుంది (Variable)</td>
+                    <td>జలచక్రం నిర్వహణకు మరియు మేఘాల ఏర్పాటుకు.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-card">
+        <h2>11.3 నీటిలో, నేలలో నివసిస్తున్న జంతువులు, మొక్కలకు ఆక్సిజన్ ఎలా లభిస్తుంది?</h2>
+        
+        <div class="activity-box">
+            <h4>కృత్యం 5: నీటిలో గాలి ఉనికిని పరిశీలించుట</h4>
+            <p>ఒక పాత్రలో నీటిని తీసుకొని వేడి చేయండి. నీరు బాగా వేడెక్కిన తరువాత పాత్ర లోపలి తలాన్ని పరిశీలించండి. చిన్నచిన్న గాలి బుడగలు కనిపిస్తాయి (పటం 11.10). ఈ గాలి బుడగలు నీటిలో కరిగి ఉన్న గాలి వలన ఏర్పడతాయి. జలచరాలు నీటిలో కరిగి ఉన్న ఆక్సిజన్ను ఉపయోగించుకుంటాయి.</p>
+        </div>
+
+        <div class="activity-box">
+            <h4>కృత్యం 6: మట్టిలో గాలి ఉనికిని పరిశీలించుట</h4>
+            <p>ఒక గ్లాసులో కొంచెం పొడి మట్టి ముద్ద తీసుకుని నీటిని కలపండి. మట్టిలో నుండి గాలి బుడగలు రావడం గమనించారా? (పటము 11.11). నేలలో నివసించే జీవులు, మొక్కల వేర్లు ఈ గాలిని శ్వాసిస్తాయి. భారీ వర్షాల సమయంలో వానపాములు బయటకు రావడానికి కారణం మట్టిలోని ఖాళీ ప్రదేశాలు నీటితో నిండిపోవడమే.</p>
+        </div>
+
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.11.9,10,11.png?raw=true" alt="గాలి సంఘటన పై చార్ట్, మరిగే నీటిలో బుడగలు మరియు మట్టిలో గాలి బుడగలు">
+            <p>పై చార్ట్ (పటం 11.9): గాలి సంఘటనము | పటం 11.10: మరిగే నీటిలో బుడగలు | పటం 11.11: మట్టిలో గాలి బుడగలు</p>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <h2>11.4 వాతావరణంలోనికి ఆక్సిజన్ ఎలా భర్తీ అవుతుంది?</h2>
+        <p>అధ్యాయము 4 లో మనం <strong>కిరణ జన్య సంయోగ క్రియ</strong> గురించి చదువుకున్నాం. ఈ ప్రక్రియలో, మొక్కలు తమ ఆహారాన్ని తయారు చేసుకుంటూ <strong>ఆక్సిజన్ ను ఉత్పత్తి చేస్తాయి</strong>. మొక్కలు, జంతువులలో శ్వాస క్రియ, మొక్కలలో జరిగే కిరణజన్య సంయోగక్రియల వలన వాతావరణంలోని ఆక్సిజన్ మరియు కార్బన్ డై ఆక్సైడ్ల <strong>సమతుల్యత</strong> సాధ్యపడుతుంది.</p>
+
+        <p>గాలిమరను బోరుబావి నుండి నీటిని తోడడానికి, పిండి మర పని చేయడానికి మరియు <strong>విద్యుత్ ఉత్పత్తికి</strong> ఉపయోగిస్తారు. పడవలు, గ్లైడర్, ప్యారాచూట్ మరియు విమానాల కదలికకు గాలి సహాయపడుతుంది.</p>
+
+        <div class="image-container">
+            <img src="https://github.com/Rajatalluri91/6th-Class-Science/blob/main/6.11.12.png?raw=true" alt="గాలిమర (Windmill)">
+            <p>పటం 11.12: గాలిమర (Windmill)</p>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <h2>కీలక పదాలు (Key Terms)</h2>
+        <div class="key-terms">
+            <span class="key-term-badge">వాతావరణం</span>
+            <span class="key-term-badge">కార్బన్ డై ఆక్సైడ్</span>
+            <span class="key-term-badge">గాలి సంఘటనము</span>
+            <span class="key-term-badge">ఆక్సిజన్ / ఆమ్లజని</span>
+            <span class="key-term-badge">నత్రజని</span>
+            <span class="key-term-badge">పొగ</span>
+            <span class="key-term-badge">గాలిమర</span>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <h2>సారాంశం</h2>
+        <ul>
+            <li>గాలి ప్రతి చోటా ఉంటుంది. మనం గాలిని చూడలేము కానీ దాని అనుభూతిని పొందగలం, కదిలే గాలిని <strong>పవనము</strong> అంటారు.</li>
+            <li>గాలి స్థలాన్ని ఆక్రమిస్తుంది మరియు నీరు, మట్టిలో ఉంటుంది.</li>
+            <li>గాలి అనేది నత్రజని, ఆక్సిజన్, కార్బన్ డై ఆక్సైడ్, నీటి ఆవిరి మరియు కొన్ని ఇతర వాయువుల మిశ్రమం.</li>
+            <li>ఆక్సిజన్ మండడానికి సహాయపడుతుంది, జీవులు జీవించడానికి అవసరం.</li>
+            <li>భూమి చుట్టూ ఆవరించిన గాలి పొరను <strong>వాతావరణం</strong> అంటారు.</li>
+            <li>జల చరాలు శ్వాసక్రియ కొరకు నీటిలో కరిగిన గాలిని ఉపయోగించుకుంటాయి.</li>
+            <li>మొక్కలు, జంతువులు గాలిలోని ఆక్సిజన్ మరియు కార్బన్ డై ఆక్సైడ్ కొరకు ఒకదానిపై ఒకటి ఆధారపడతాయి.</li>
+        </ul>
+    </div>
+
+    <div class="section-card">
+        <h2>అభ్యాసము (ప్రశ్నలు మరియు జవాబులు)</h2>
+        <ol>
+            <li><strong>గాలి యొక్క సంఘటనము ఏమిటి?</strong><br>సమాధానం: గాలిలో నైట్రోజన్ (78%), ఆక్సిజన్ (21%), మరియు తక్కువ మొత్తంలో కార్బన్ డై ఆక్సైడ్, నీటి ఆవిరి, ధూళి కణాలు ఉంటాయి.</li>
+            <li><strong>శ్వాసక్రియకు గాలిలోని ఏ వాయువు అవసరము?</strong><br>సమాధానం: ఆక్సిజన్ (ఆమ్లజని).</li>
+            <li><strong>మండుటకు గాలి సహాయపడుతుందని ఎలా నిరూపిస్తావు?</strong><br>సమాధానం: వెలుగుతున్న కొవ్వొత్తిని గ్లాసుతో మూసివేస్తే గాలి అందక ఆరిపోతుంది, దీనిని బట్టి మండుటకు గాలి అవసరమని నిరూపించవచ్చు.</li>
+            <li><strong>నీటిలో గాలి కరుగుతుందని ఎలా చూపుతావు?</strong><br>సమాధానం: నీటిని వేడి చేసినప్పుడు చిన్న చిన్న గాలి బుడగలు ఏర్పడటాన్ని బట్టి నీటిలో గాలి కరిగి ఉంటుందని చూపవచ్చు.</li>
+            <li><strong>భూమి చుట్టూ ఆవరించి ఉన్న గాలి పొరను ఏమంటారు?</strong><br>సమాధానం: వాతావరణం.</li>
+            <li><strong>ఆకుపచ్చని మొక్కలు తమ ఆహార తయారీలో ఉపయోగించుకునే గాలిలోని అంశం ఏది?</strong><br>సమాధానం: కార్బన్ డై ఆక్సైడ్.</li>
+        </ol>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                btn.textContent = '🌙 డార్క్ మోడ్';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️ లైట్ మోడ్';
+            }
+        }
+    </script>
+
+</body>
+</html>
